@@ -46,3 +46,32 @@ for i in range(1, ws.max_row + 1):
     print(row)  # list of cell values of this row
 
 # Loop through the worksheets images
+
+def is_png(image_path):
+    try:
+        img = Image.open(image_path)
+        return img.format == 'PNG'
+    except IOError:
+        return False
+
+image_path = 'Image.png'
+if is_png(image_path):
+    print("The image is in PNG format.")
+else:
+    print("The image is not in PNG format.")
+
+
+def convert_to_png(image_path, output_path):
+    try:
+        img = Image.open(image_path)
+        if img.format != 'PNG':
+            img.save(output_path, 'PNG')
+            print("Image converted to PNG format.")
+        else:
+            print("The image is already in PNG format.")
+    except IOError:
+        print("Unable to open the image.")
+
+image_path = 'Image.jpg'
+output_path = 'output_image.png'
+convert_to_png(image_path, output_path)
