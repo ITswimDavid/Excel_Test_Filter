@@ -14,7 +14,6 @@ ws = wb.active
 image_loader = SheetImageLoader(ws)
 
 # get the image (put the cell you need instead of 'A1')
-image = image_loader.get('B2')
 
 
 # showing the image
@@ -34,9 +33,12 @@ for i in range(1, ws.max_row + 1):
     for cel in row:
         cel: Cell
         print(type(cel))
-        if image_loader.image_in(cel.coordinate): # needs coords of cell
-            print("Image in cell")
-            print("Cell: " + cel.coordinate)
+        cel_coordinate = cel.coordinate
+        if image_loader.image_in(cel_coordinate):  # needs coords of cell
+            print("Cell: " + cel_coordinate)
+            image_loader.image_in(cel_coordinate)
+            image = image_loader.get(cel_coordinate)
+            image.show()
 
         print(cel.value)
 
