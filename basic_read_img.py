@@ -2,8 +2,6 @@ import os
 
 from openpyxl import load_workbook
 from PIL import Image
-from io import BytesIO
-import matplotlib.pyplot as plt
 from openpyxl.cell import Cell
 from openpyxl.workbook import Workbook
 from openpyxl.worksheet.worksheet import Worksheet
