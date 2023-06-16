@@ -13,6 +13,7 @@ ws = wb.active
 # calling the image_loader
 image_loader = SheetImageLoader(ws)
 
+
 # get the image (put the cell you need instead of 'A1')
 
 
@@ -31,8 +32,8 @@ for i in range(1, ws.max_row + 1):
     row = [cell for cell in ws[i]]  # sheet[n] gives nth row (list of cells)
 
     for cel in row:
-        cel: Cell
-        print(type(cel))
+        cel: Cell  # use type hinting to get code completion
+
         cel_coordinate = cel.coordinate
         if image_loader.image_in(cel_coordinate):  # needs coords of cell
             print("Cell: " + cel_coordinate)
