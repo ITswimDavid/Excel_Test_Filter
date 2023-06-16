@@ -2,6 +2,7 @@ from openpyxl import load_workbook
 from PIL import Image
 from io import BytesIO
 import matplotlib.pyplot as plt
+from openpyxl.cell import Cell
 
 from openpyxl_image_loader import SheetImageLoader
 
@@ -28,14 +29,16 @@ def is_image_in_cell(cell):
 
 
 for i in range(1, ws.max_row + 1):
-    row = [cell.value for cell in ws[i]]  # sheet[n] gives nth row (list of cells)
+    row = [cell for cell in ws[i]]  # sheet[n] gives nth row (list of cells)
 
     for cel in row:
-        if image_loader.image_in(cel):
+        cel: Cell
+        print(type(cel))
+        if image_loader.image_in(cel.coordinate): # needs coords of cell
             print("Image in cell")
             print("Cell: " + cel.coordinate)
 
-        print(cel)
+        print(cel.value)
 
     print(row)  # list of cell values of this row
 
